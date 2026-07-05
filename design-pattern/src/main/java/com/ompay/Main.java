@@ -30,6 +30,7 @@ public class Main {
 
         System.out.println("\n=== 2. Écran d'accueil : Payer / Transférer (Strategy + Observer) ===");
         User birane = new User("777669595", "Birane Baila Wane", 50000);
+        birane.setAuthenticated(true);
         System.out.println(birane);
 
         TransactionHistory historique = new TransactionHistory();

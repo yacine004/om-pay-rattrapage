@@ -15,6 +15,7 @@ class OperationContextTest {
     @Test
     void payerShouldDebitExactAmountAndNotifyObserver() {
         User user = new User("770000000", "Test User", 10000);
+        user.setAuthenticated(true);
         TransactionHistory history = new TransactionHistory();
         TransactionPublisher publisher = new TransactionPublisher();
         publisher.subscribe(history);
@@ -30,6 +31,7 @@ class OperationContextTest {
     @Test
     void transfererShouldApplyOnePercentFee() {
         User user = new User("770000000", "Test User", 10000);
+        user.setAuthenticated(true);
         TransactionHistory history = new TransactionHistory();
         TransactionPublisher publisher = new TransactionPublisher();
         publisher.subscribe(history);
@@ -45,6 +47,7 @@ class OperationContextTest {
     @Test
     void shouldThrowWhenNoStrategySelected() {
         User user = new User("770000000", "Test User", 10000);
+        user.setAuthenticated(true);
         TransactionPublisher publisher = new TransactionPublisher();
         OperationContext context = new OperationContext(publisher);
 
@@ -55,6 +58,7 @@ class OperationContextTest {
     @Test
     void shouldThrowWhenInsufficientBalance() {
         User user = new User("770000000", "Test User", 100);
+        user.setAuthenticated(true);
         TransactionPublisher publisher = new TransactionPublisher();
         OperationContext context = new OperationContext(publisher);
         context.setStrategy(new PayerStrategy());
