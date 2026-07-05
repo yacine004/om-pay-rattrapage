@@ -1,0 +1,23 @@
+<div class="om-phone-frame" style="align-items: center; text-align: center;">
+  <div class="om-title" style="margin-top: 60px;"><span class="om-accent">Orange</span> Money</div>
+  <div class="om-title" style="margin-top: 20px;"><span class="om-accent">Transférer</span> de l'argent</div>
+
+  <div class="om-card" style="margin-top: 40px; width: 100%;">
+    <p style="font-size: 15px;">SMS d'authentification vérifié ! Veuillez saisir le code reçu par SMS.</p>
+
+    <input
+      class="om-input"
+      type="text"
+      placeholder="Code reçu par SMS"
+      [(ngModel)]="code"
+      maxlength="4"
+      style="text-align: center; letter-spacing: 8px; font-size: 20px;"
+    />
+
+    @if (error()) {
+      <p class="om-error">{{ error() }}</p>
+    }
+
+    <button class="om-button" (click)="onSubmit()">Valider</button>
+  </div>
+</div>

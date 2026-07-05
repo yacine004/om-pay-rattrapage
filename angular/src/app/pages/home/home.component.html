@@ -1,0 +1,63 @@
+<div class="om-phone-frame">
+  <div style="display: flex; justify-content: space-between; align-items: center;">
+    <button (click)="goToProfile()" style="background: none; border: none; color: white; font-size: 22px; cursor: pointer;">☰</button>
+    <div style="width: 60px; height: 60px; background: white; border-radius: 8px;"></div>
+  </div>
+
+  <div style="margin-top: 16px;">
+    <p style="margin: 0; color: var(--om-text-muted);">Bonjour <span style="color: white; font-weight: 600;">{{ authService.currentUser()?.fullName?.split(' ')?.[0] }}</span></p>
+    <p style="margin: 4px 0; font-size: 18px; font-weight: 700;">
+      @if (hideBalance()) { ******* } @else { {{ authService.currentUser()?.balance }} }
+      FCFA
+      <span (click)="toggleBalance()" style="cursor: pointer;">👁</span>
+    </p>
+  </div>
+
+  <div class="om-card" style="margin-top: 20px;">
+    <div style="display: flex; gap: 20px; margin-bottom: 16px;">
+      <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+        <input type="radio" name="mode" [checked]="mode === 'payer'" (change)="mode = 'payer'" /> Payer
+      </label>
+      <label style="display: flex; align-items: center; gap: 6px; cursor: pointer;">
+        <input type="radio" name="mode" [checked]="mode === 'transferer'" (change)="mode = 'transferer'" /> Transférer
+      </label>
+    </div>
+
+    <input class="om-input" type="text" placeholder="Saisir le numéro/code march..." [(ngModel)]="target" />
+    <input class="om-input" type="number" placeholder="Saisir le montant" [(ngModel)]="amount" />
+
+    @if (error()) {
+      <p class="om-error">{{ error() }}</p>
+    }
+
+    <button class="om-button" (click)="onValider()">Valider</button>
+  </div>
+
+  <button class="om-button om-button--outline" style="margin-top: 16px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+    <span style="color: var(--om-orange); font-weight: 700;">Max it</span> Accéder à Max it
+  </button>
+
+  <div style="margin-top: 24px; flex: 1; overflow-y: auto;">
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+      <h3 style="margin: 0;">Historique</h3>
+      <span style="cursor: pointer;">↻</span>
+    </div>
+
+    @for (t of transactionService.history(); track t.date.getTime()) {
+      <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--om-border);">
+        <div style="display: flex; align-items: center; gap: 12px;">
+          <div style="width: 36px; height: 36px; border-radius: 8px; background: var(--om-card); border: 1px solid var(--om-border);
+                      display: flex; align-items: center; justify-content: center;">💸</div>
+          <div>
+            <p style="margin: 0; font-size: 14px;">{{ t.type }}</p>
+            <p style="margin: 0; font-size: 13px; color: var(--om-text-muted);">{{ t.target }}</p>
+          </div>
+        </div>
+        <div style="text-align: right;">
+          <p style="margin: 0; color: #ff5252;">- {{ t.amount }} CFA</p>
+          <p style="margin: 0; font-size: 12px; color: var(--om-text-muted);">{{ t.date | date: 'dd/MM HH:mm' }}</p>
+        </div>
+      </div>
+    }
+  </div>
+</div>
