@@ -14,7 +14,7 @@ class _PinScreenState extends State<PinScreen> {
   final List<String> _digits = ['', '', '', ''];
   String? _error;
 
-  static const _keypad = ['2', '4', '8', '7', '3', '0', '6', '5', '1', '9'];
+  // keypad is constructed explicitly in the widget tree below; no field required
 
   void _pressDigit(String digit) {
     final index = _digits.indexOf('');
@@ -60,9 +60,16 @@ class _PinScreenState extends State<PinScreen> {
             children: [
               RichText(
                 text: const TextSpan(
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                   children: [
-                    TextSpan(text: 'Orange ', style: TextStyle(color: OmTheme.orange)),
+                    TextSpan(
+                      text: 'Orange ',
+                      style: TextStyle(color: OmTheme.orange),
+                    ),
                     TextSpan(text: 'Money'),
                   ],
                 ),
@@ -70,9 +77,16 @@ class _PinScreenState extends State<PinScreen> {
               const SizedBox(height: 16),
               RichText(
                 text: const TextSpan(
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.white),
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
                   children: [
-                    TextSpan(text: 'Transférer ', style: TextStyle(color: OmTheme.orange)),
+                    TextSpan(
+                      text: 'Transférer ',
+                      style: TextStyle(color: OmTheme.orange),
+                    ),
                     TextSpan(text: 'de l\'argent'),
                   ],
                 ),
@@ -100,22 +114,54 @@ class _PinScreenState extends State<PinScreen> {
               ),
               if (_error != null) ...[
                 const SizedBox(height: 8),
-                Text(_error!, style: const TextStyle(color: Colors.redAccent, fontSize: 13)),
+                Text(
+                  _error!,
+                  style: const TextStyle(color: Colors.redAccent, fontSize: 13),
+                ),
               ],
               const SizedBox(height: 24),
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 14,
-                  crossAxisSpacing: 14,
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  children: [
-                    ..._keypad.map((key) => _KeypadButton(label: key, onTap: () => _pressDigit(key))),
-                    const SizedBox.shrink(),
-                    _KeypadButton(label: '⌫', filled: true, onTap: _backspace),
-                  ],
-                ),
+              Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _KeypadButton(label: '1', onTap: () => _pressDigit('1')),
+                      _KeypadButton(label: '2', onTap: () => _pressDigit('2')),
+                      _KeypadButton(label: '3', onTap: () => _pressDigit('3')),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _KeypadButton(label: '4', onTap: () => _pressDigit('4')),
+                      _KeypadButton(label: '5', onTap: () => _pressDigit('5')),
+                      _KeypadButton(label: '6', onTap: () => _pressDigit('6')),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      _KeypadButton(label: '7', onTap: () => _pressDigit('7')),
+                      _KeypadButton(label: '8', onTap: () => _pressDigit('8')),
+                      _KeypadButton(label: '9', onTap: () => _pressDigit('9')),
+                    ],
+                  ),
+                  const SizedBox(height: 14),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const SizedBox(width: 68, height: 68),
+                      _KeypadButton(label: '0', onTap: () => _pressDigit('0')),
+                      _KeypadButton(
+                        label: '⌫',
+                        filled: true,
+                        onTap: _backspace,
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ],
           ),
@@ -130,7 +176,11 @@ class _KeypadButton extends StatelessWidget {
   final VoidCallback onTap;
   final bool filled;
 
-  const _KeypadButton({required this.label, required this.onTap, this.filled = false});
+  const _KeypadButton({
+    required this.label,
+    required this.onTap,
+    this.filled = false,
+  });
 
   @override
   Widget build(BuildContext context) {
