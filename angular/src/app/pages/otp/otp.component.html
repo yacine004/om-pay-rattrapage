@@ -1,17 +1,16 @@
-<div class="om-phone-frame" style="align-items: center; text-align: center;">
-  <div class="om-title" style="margin-top: 60px;"><span class="om-accent">Orange</span> Money</div>
-  <div class="om-title" style="margin-top: 20px;"><span class="om-accent">Transférer</span> de l'argent</div>
+<div class="om-phone-frame om-center">
+  <div class="om-title om-title--top-large"><span class="om-accent">Orange</span> Money</div>
+  <div class="om-title om-title--top-small"><span class="om-accent">Transférer</span> de l'argent</div>
 
-  <div class="om-card" style="margin-top: 40px; width: 100%;">
-    <p style="font-size: 15px;">SMS d'authentification vérifié ! Veuillez saisir le code reçu par SMS.</p>
+  <div class="om-card om-card--otp">
+    <p class="om-card__text">SMS d'authentification vérifié ! Veuillez saisir le code reçu par SMS.</p>
 
     <input
-      class="om-input"
+      class="om-input om-input--otp"
       type="text"
       placeholder="Code reçu par SMS"
       [(ngModel)]="code"
       maxlength="4"
-      style="text-align: center; letter-spacing: 8px; font-size: 20px;"
     />
 
     @if (error()) {

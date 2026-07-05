@@ -1,9 +1,9 @@
 <div class="om-phone-frame">
-  <div style="margin-top: 40px;">
+  <div class="om-title__wrapper">
     <div class="om-title"><span class="om-accent">Orange</span> Money</div>
   </div>
 
-  <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px;">
+  <div class="login-flex">
     <div>
       <div class="om-title"><span class="om-accent">Transférer</span> de l'argent</div>
       <p class="om-subtitle">
@@ -12,11 +12,11 @@
     </div>
 
     <div class="om-card">
-      <h3 style="margin-top: 0;">Bienvenue sur OM Pay !</h3>
-      <p class="om-subtitle" style="margin-bottom: 16px;">Entrez votre numéro mobile pour vous connecter</p>
+      <h3 class="om-heading-reset">Bienvenue sur OM Pay !</h3>
+      <p class="om-subtitle om-subtitle--with-bottom">Entrez votre numéro mobile pour vous connecter</p>
 
-      <div style="display: flex; gap: 8px;">
-        <select class="om-input" style="width: 90px; flex: none;">
+      <div class="om-input-row">
+        <select id="country-code" aria-label="Indicatif du pays" class="om-input om-input--code">
           <option>+221</option>
         </select>
         <input
