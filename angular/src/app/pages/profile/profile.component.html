@@ -1,0 +1,35 @@
+<div class="om-phone-frame" style="align-items: center; text-align: center;">
+  <div style="width: 72px; height: 72px; border-radius: 50%; background: var(--om-card);
+              display: flex; align-items: center; justify-content: center; margin-top: 30px; font-size: 32px;">
+    👤
+  </div>
+
+  <h3 style="margin: 12px 0 0;">{{ authService.currentUser()?.fullName }}</h3>
+  <p style="color: var(--om-text-muted); margin-top: 4px;">{{ authService.currentUser()?.phoneNumber }}</p>
+
+  <div class="om-card" style="width: 100%; margin-top: 24px; text-align: left;">
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--om-border);">
+      <span>⚙️ Sombre</span>
+      <button class="om-button" style="width: auto; padding: 4px 14px;" (click)="toggleDarkMode()">
+        {{ darkMode() ? 'ON' : 'OFF' }}
+      </button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--om-border);">
+      <span>▦ Scanner</span>
+      <button class="om-button" style="width: auto; padding: 4px 14px;" (click)="toggleScanner()">
+        {{ scannerEnabled() ? 'ON' : 'OFF' }}
+      </button>
+    </div>
+    <div style="display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--om-border);">
+      <span>🌐 Langue</span>
+      <span>{{ language() }}</span>
+    </div>
+    <div style="padding-top: 12px;">
+      <button class="om-button om-button--outline" (click)="logout()">⏻ Se déconnecter</button>
+    </div>
+  </div>
+
+  <p style="color: var(--om-text-muted); font-size: 12px; margin-top: auto; padding-top: 20px;">
+    OMPAY Version - 1.1.0 (35)
+  </p>
+</div>

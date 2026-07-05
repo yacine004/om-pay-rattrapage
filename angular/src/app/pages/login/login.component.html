@@ -1,0 +1,38 @@
+<div class="om-phone-frame">
+  <div style="margin-top: 40px;">
+    <div class="om-title"><span class="om-accent">Orange</span> Money</div>
+  </div>
+
+  <div style="flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 20px;">
+    <div>
+      <div class="om-title"><span class="om-accent">Transférer</span> de l'argent</div>
+      <p class="om-subtitle">
+        Envoyez rapidement et en toute sécurité de l'argent à un proche qui possède un compte Orange Money.
+      </p>
+    </div>
+
+    <div class="om-card">
+      <h3 style="margin-top: 0;">Bienvenue sur OM Pay !</h3>
+      <p class="om-subtitle" style="margin-bottom: 16px;">Entrez votre numéro mobile pour vous connecter</p>
+
+      <div style="display: flex; gap: 8px;">
+        <select class="om-input" style="width: 90px; flex: none;">
+          <option>+221</option>
+        </select>
+        <input
+          class="om-input"
+          type="tel"
+          placeholder="Saisir mon numéro"
+          [(ngModel)]="phoneNumber"
+          maxlength="9"
+        />
+      </div>
+
+      @if (error()) {
+        <p class="om-error">{{ error() }}</p>
+      }
+
+      <button class="om-button" (click)="onSubmit()">Se connecter</button>
+    </div>
+  </div>
+</div>
