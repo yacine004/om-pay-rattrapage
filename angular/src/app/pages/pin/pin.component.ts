@@ -11,7 +11,7 @@ import { AuthService } from '../../core/auth.service';
 })
 export class PinComponent {
   digits = signal<string[]>(['', '', '', '']);
-  keypad = ['2', '4', '8', '7', '3', '0', '6', '5', '1', '9'];
+  keypad = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'];
   error = signal<string | null>(null);
 
   constructor(private authService: AuthService, private router: Router) {}

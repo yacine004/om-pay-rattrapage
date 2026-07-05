@@ -83,6 +83,102 @@ html, body {
   padding: 20px;
 }
 
+.pin-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.pin-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: rgba(255, 121, 0, 0.2);
+  border: 1px solid rgba(255, 121, 0, 0.4);
+}
+
+.pin-dot.filled {
+  background: var(--om-orange);
+  border-color: var(--om-orange);
+}
+
+.pin-keypad {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(70px, 1fr));
+  gap: 14px;
+}
+
+.pin-keypad-spacer {
+  visibility: hidden;
+}
+
+.om-button.om-button--keypad {
+  border-radius: 50%;
+  aspect-ratio: 1;
+  min-height: 70px;
+  padding: 0;
+  font-size: 20px;
+}
+
+.om-button--outline {
+  background: transparent;
+  border: 1px solid var(--om-border);
+  color: var(--om-text);
+}
+
+.om-title__wrapper {
+  margin-top: 40px;
+}
+
+.login-flex {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 20px;
+}
+
+.om-card--pin {
+  margin-top: 32px;
+  width: 100%;
+  max-width: 360px;
+}
+
+.om-card--otp {
+  margin-top: 40px;
+  width: 100%;
+}
+
+.om-card__text {
+  font-size: 15px;
+  margin: 0 0 18px;
+}
+
+.om-input--otp {
+  text-align: center;
+  letter-spacing: 8px;
+  font-size: 20px;
+}
+
+.om-heading-reset {
+  margin-top: 0;
+}
+
+.om-subtitle--with-bottom {
+  margin-bottom: 16px;
+}
+
+.om-input-row {
+  display: flex;
+  gap: 8px;
+}
+
+.om-input--code {
+  width: 90px;
+  flex: none;
+}
+
 .om-error {
   color: #ff5252;
   font-size: 13px;

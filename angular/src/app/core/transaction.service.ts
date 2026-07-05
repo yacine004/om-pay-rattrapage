@@ -31,8 +31,15 @@ export class TransactionService {
   }
 
   private debitUser(total: number): void {
+    if (!this.authService.isAuthenticated()) {
+      throw new Error('Vous devez être connecté pour effectuer cette opération');
+    }
+
     const user = this.authService.currentUser();
-    if (!user) return;
+    if (!user) {
+      throw new Error('Vous devez être connecté pour effectuer cette opération');
+    }
+
     if (total > user.balance) {
       throw new Error('Solde insuffisant');
     }

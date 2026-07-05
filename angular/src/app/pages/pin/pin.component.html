@@ -1,29 +1,28 @@
-<div class="om-phone-frame" style="align-items: center; text-align: center;">
-  <div class="om-title" style="margin-top: 40px;"><span class="om-accent">Orange</span> Money</div>
-  <div class="om-title" style="margin-top: 16px;"><span class="om-accent">Transférer</span> de l'argent</div>
+<div class="om-phone-frame om-center">
+  <div class="om-title om-title--top-large"><span class="om-accent">Orange</span> Money</div>
+  <div class="om-title om-title--top-small"><span class="om-accent">Transférer</span> de l'argent</div>
 
-  <p style="margin-top: 30px; max-width: 280px;">
-    SMS d'authentification vérifié ! Veuillez saisir votre code secret Orange Money !
-  </p>
+  <div class="om-card om-card--pin">
+    <p class="om-card__text">
+      SMS d'authentification vérifié ! Veuillez saisir votre code secret Orange Money.
+    </p>
 
-  <div style="display: flex; gap: 16px; margin: 20px 0;">
-    @for (d of digits(); track $index) {
-      <div style="width: 16px; height: 16px; border-radius: 50%; background: var(--om-orange);
-                   opacity: {{ d ? 1 : 0.25 }};"></div>
+    <div class="pin-indicators">
+      @for (d of digits(); track $index) {
+        <div class="pin-dot" [class.filled]="d"></div>
+      }
+    </div>
+
+    @if (error()) {
+      <p class="om-error">{{ error() }}</p>
     }
-  </div>
 
-  @if (error()) {
-    <p class="om-error">{{ error() }}</p>
-  }
-
-  <div style="display: grid; grid-template-columns: repeat(3, 70px); gap: 14px; margin-top: 20px;">
-    @for (key of keypad; track key) {
-      <button class="om-button om-button--outline" style="border-radius: 50%; aspect-ratio: 1;"
-              (click)="pressDigit(key)">{{ key }}</button>
-    }
-    <div></div>
-    <button class="om-button" style="border-radius: 50%; aspect-ratio: 1; background: var(--om-orange);"
-            (click)="backspace()">⌫</button>
+    <div class="pin-keypad">
+      @for (key of keypad; track key) {
+        <button class="om-button om-button--keypad" (click)="pressDigit(key)">{{ key }}</button>
+      }
+      <div class="pin-keypad-spacer"></div>
+      <button class="om-button om-button--keypad om-button--outline" (click)="backspace()">⌫</button>
+    </div>
   </div>
 </div>
