@@ -35,7 +35,7 @@ public class User {
     }
 
     @Override
-    public String toString() {
-        return fullName + " (" + phoneNumber + ") - Solde: " + balance + " FCFA";
-    }
+public String toString() {
+    return fullName + " (" + phoneNumber + ") - Solde: " + String.format("%.2f", balance) + " FCFA";
+}
 }
