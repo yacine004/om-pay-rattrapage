@@ -15,7 +15,9 @@ class AuthService extends ChangeNotifier {
   /// Étape 1 : envoi du SMS. Retourne l'OTP simulé (visible dans les logs de dev).
   String requestOtp(String phoneNumber) {
     if (!RegExp(r'^\d{9}$').hasMatch(phoneNumber)) {
-      throw Exception('Numéro invalide, format attendu : 9 chiffres après +221');
+      throw Exception(
+        'Numéro invalide, format attendu : 9 chiffres après +221',
+      );
     }
     _pendingPhoneNumber = phoneNumber;
     _expectedOtp = (1000 + Random().nextInt(9000)).toString();
@@ -42,11 +44,17 @@ class AuthService extends ChangeNotifier {
   }
 
   void debit(double total) {
-    if (_currentUser == null) return;
+    if (!_isAuthenticated || _currentUser == null) {
+      throw Exception(
+        'Vous devez être connecté pour effectuer cette opération',
+      );
+    }
     if (total > _currentUser!.balance) {
       throw Exception('Solde insuffisant');
     }
-    _currentUser = _currentUser!.copyWith(balance: _currentUser!.balance - total);
+    _currentUser = _currentUser!.copyWith(
+      balance: _currentUser!.balance - total,
+    );
     notifyListeners();
   }
 
