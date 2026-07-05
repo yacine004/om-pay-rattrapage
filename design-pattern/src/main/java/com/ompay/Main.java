@@ -47,6 +47,6 @@ public class Main {
         System.out.println("\n=== 3. Historique final ===");
         historique.getTransactions().forEach(t -> System.out.println("   " + t));
 
-        System.out.println("\nSolde restant: " + birane.getBalance() + " FCFA");
+        System.out.printf("%nSolde restant: %.2f FCFA%n", birane.getBalance());
     }
 }
